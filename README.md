@@ -86,11 +86,27 @@ You can add more tests in `tests/test_recommender.py`.
 
 ## Experiments You Tried
 
-Use this section to document the experiments you ran. For example:
+### Profile 1
 
-- What happened when you changed the weight on genre from 2.0 to 0.5
-- What happened when you added tempo or valence to the score
-- How did your system behave for different types of users
+`genre=pop, mood=happy, energy=0.85`
+
+Top result: **Sunrise City** (Score: 3.97) — perfect genre + mood + energy match. **Gym Hero** ranked 2nd despite being "intense" mood, because the genre match alone gave it 2 points. This showed that genre weight can override mood mismatches.
+
+### Profile 2
+
+`genre=lofi, mood=chill, energy=0.38, likes_acoustic=True`
+
+Top results were all lofi tracks with high acousticness. Results felt the most accurate of all three profiles — the combination of genre + mood + acoustic bonus created a strong, consistent signal.
+
+### Profile 3
+
+`genre=rock, mood=intense, energy=0.92`
+
+Only one rock song exists (Storm Runner, Score: 3.99). Ranks 2–5 were filled by EDM and metal songs that matched on mood and energy but not genre. This clearly exposed the small-catalog limitation.
+
+Halving the genre weight from 2.0 to 1.0 would cause energy similarity to dominate, mixing genres together based purely on tempo feel. The lofi profile would likely surface ambient and acoustic songs from other genres — less accurate but more diverse.
+
+## ![](image1.png)
 
 ---
 
